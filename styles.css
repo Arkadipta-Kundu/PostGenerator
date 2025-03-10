@@ -1,0 +1,41 @@
+/* Dark Mode Styles */
+body.dark-mode {
+  background-color: #1a202c;
+  color: #cbd5e0;
+}
+
+body.dark-mode .bg-white {
+  background-color: #2d3748;
+}
+
+body.dark-mode .bg-gray-100 {
+  background-color: #1a202c;
+}
+
+body.dark-mode .bg-gray-200 {
+  background-color: #4a5568;
+}
+
+body.dark-mode .border-gray-300 {
+  border-color: #718096;
+}
+
+body.dark-mode .text-gray-900 {
+  color: #cbd5e0;
+}
+
+/* General Styles */
+button {
+  transition: background-color 0.3s ease;
+}
+
+input,
+select {
+  transition: border-color 0.3s ease;
+}
+
+input:focus,
+select:focus {
+  border-color: #3182ce;
+  outline: none;
+}

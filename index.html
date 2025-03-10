@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Generator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="bg-gray-100 text-gray-900">
+    <div class="max-w-3xl mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
+        <h3 class="text-2xl font-bold text-center mb-6">🚀 Post Generator</h3>
+
+        <!-- Dark Mode Toggle Button -->
+        <div class="text-right mb-4">
+            <button id="darkModeToggle" class="bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-700">Toggle Dark
+                Mode</button>
+        </div>
+
+        <form id="postForm">
+            <div class="topic-section">
+                <div class="topic p-4 border border-gray-300 rounded-lg mb-4">
+                    <h6 class="font-semibold text-lg mb-2">📌 What I Learned</h6>
+                    <input type="text" class="learned w-full p-2 border border-gray-300 rounded"
+                        placeholder="Topic Name" required>
+
+                    <h6 class="font-semibold text-lg mt-4">📅 When did you learn this?</h6>
+                    <input type="text" class="learned-date w-full p-2 border border-gray-300 rounded"
+                        placeholder="e.g., Last week, past month, etc." required>
+
+                    <h6 class="font-semibold text-lg mt-4">📚 Resources</h6>
+                    <div class="resourceContainer"></div>
+                    <button class="add-resource-btn bg-blue-500 text-white px-4 py-2 mt-2 rounded hover:bg-blue-600">Add
+                        Resource</button>
+
+                    <h6 class="font-semibold text-lg mt-4">💻 Code I Wrote</h6>
+                    <input type="text" class="github w-full p-2 border border-gray-300 rounded"
+                        placeholder="GitHub repo - Link">
+
+                    <h6 class="font-semibold text-lg mt-4">📝 My Article (if any)</h6>
+                    <div class="articleContainer">
+                        <div class="flex gap-4 my-2">
+                            <label><input type="radio" class="article-type" name="article-type-1" value="Hashnode">
+                                Hashnode</label>
+                            <label><input type="radio" class="article-type" name="article-type-1" value="Dev.to">
+                                Dev.to</label>
+                            <label><input type="radio" class="article-type" name="article-type-1" value="LinkedIn">
+                                LinkedIn</label>
+                        </div>
+                        <input type="text" class="article-link w-full p-2 border border-gray-300 rounded"
+                            placeholder="Article Link">
+                    </div>
+                </div>
+            </div>
+
+            <button class="add-topic-btn bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 w-full mt-4">Add
+                Another Topic</button>
+
+            <h6 class="font-semibold text-lg mt-6">🚀 What’s Next?</h6>
+            <input type="text" id="nextTopic" class="w-full p-2 border border-gray-300 rounded"
+                placeholder="What will you learn next?">
+
+            <h6 class="font-semibold text-lg mt-6">📝 Select Post Type</h6>
+            <div class="flex gap-4 my-2">
+                <label><input type="radio" name="post-type" value="LinkedIn" checked> LinkedIn Post</label>
+                <label><input type="radio" name="post-type" value="Hashnode"> Hashnode Article</label>
+                <label><input type="radio" name="post-type" value="Dev.to"> Dev.to Article</label>
+                <label><input type="radio" name="post-type" value="Twitter"> Twitter Post</label>
+            </div>
+
+            <button
+                class="generate-btn bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-600 w-full mt-4">Generate
+                Post</button>
+        </form>
+
+        <h4 class="text-xl font-bold text-center mt-6">📜 Your Post:</h4>
+        <div id="output" class="p-4 bg-gray-200 border border-gray-300 rounded mt-2 min-h-[100px]"
+            contenteditable="false"></div>
+
+        <div class="flex gap-4 justify-center mt-4">
+            <button class="edit-btn bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600">Make
+                Editable</button>
+            <button class="copy-btn bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Copy to
+                Clipboard</button>
+        </div>
+
+        <div class="text-center mt-6">
+            <a href="history.html" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">View Post
+                History</a>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
