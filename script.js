@@ -168,11 +168,11 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
             postContent += `<p>In the ${learnedDate}, I learned about ${learned}. `;
-            postContent += `Resources I used: ${resources.length ? resources.join(", ") : "None"}. `;
-            postContent += `all the codes related to this topic that i wrote : ${githubLink}. `;
+            postContent += `Resources I used is : ${resources.length ? resources.join(", ") : "None"}. `;
+            postContent += `all the codes related to this topic that i wrote , here is the github link: ${githubLink}. `;
 
             if (articleType && articleLink) {
-                postContent += `I also wrote about this on ${articleType}: ${articleLink}. </p>`;
+                postContent += `I also wrote detailed article about this on ${articleType}: ${articleLink}. </p>`;
             } else {
                 postContent += `</p>`;
             }
