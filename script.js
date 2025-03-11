@@ -168,8 +168,8 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
             postContent += `<p>In the ${learnedDate}, I was lerning about ${learned}. `;
-            postContent += `the resources I used for this topic is : ${resources.length ? resources.join(", ") : "None"}. `;
-            postContent += `all the codes related to this topic that i wrote , here is the github link: ${githubLink}. `;
+            postContent += `The resources I used for this topic is : ${resources.length ? resources.join(", ") : "None"}. `;
+            postContent += `All the codes related to this topic that i wrote is here : ${githubLink}. `;
 
             if (articleType && articleLink) {
                 postContent += `I also wrote detailed article about this on ${articleType}: ${articleLink}. </p>`;
