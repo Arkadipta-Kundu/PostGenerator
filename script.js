@@ -167,8 +167,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
 
-            postContent += `<p>In the ${learnedDate}, I learned about ${learned}. `;
-            postContent += `Resources I used is : ${resources.length ? resources.join(", ") : "None"}. `;
+            postContent += `<p>In the ${learnedDate}, I was lerning about ${learned}. `;
+            postContent += `the resources I used for this topic is : ${resources.length ? resources.join(", ") : "None"}. `;
             postContent += `all the codes related to this topic that i wrote , here is the github link: ${githubLink}. `;
 
             if (articleType && articleLink) {
@@ -188,10 +188,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const postType = document.querySelector('input[name="post-type"]:checked')?.value;
         if (postType) {
             const postEndings = {
-                "LinkedIn": "Write a LinkedIn post.",
-                "Hashnode": "Write a Hashnode article.",
-                "Dev.to": "Write a Dev.to article.",
-                "Twitter": "Write a Twitter post, but keep it within 280 characters."
+                "LinkedIn": "Write a LinkedIn post. (should be from a student's/learner's pov not a master) and follow my general writing style to match with other articles ",
+                "Hashnode": "Write a Hashnode article.(should be from a student's/learner's pov not a master) and follow my general writing style to match with other articles",
+                "Dev.to": "Write a Dev.to article.(should be from a student's/learner's pov not a master) and follow my general writing style to match with other articles",
+                "Twitter": "Write a Twitter post, but keep it within 280 characters. this is just a daily update to the community what i am doing "
             };
 
             if (postEndings[postType]) {
