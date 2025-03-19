@@ -188,7 +188,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const postType = document.querySelector('input[name="post-type"]:checked')?.value;
         if (postType) {
             const postEndings = {
-                "LinkedIn": "Please turn this into an engaging LinkedIn post that highlights my learning journey in a structured, readable format. It should be:Concise yet informative , Professional but friendly,Optimized for engagement(use emojis, short paragraphs) Make sure the post flows naturally, engaging the audience while showcasing my progress and most importently is Don't sound like AI sound like human",
+                "LinkedIn": "Please turn this into an engaging LinkedIn post that highlights my learning journey in a structured, readable format. It should be:Concise yet informative , Professional but friendly,Optimized for engagement(use emojis, short paragraphs) Make sure the post flows naturally, engaging the audience while showcasing my progress and most importently is Don't sound like AI sound like human.And lastly, as linkedin posts has a charecter limit of 3000 characters so keep that in mind, try to take most of the charecters but stay in limit.",
                 "Hashnode": "Write a Hashnode article.(should be from a student's/learner's pov not a master) and follow my general writing style to match with other articles",
                 "Dev.to": "Write a Dev.to article.(should be from a student's/learner's pov not a master) and follow my general writing style to match with other articles",
                 "Twitter": "Write a Twitter post, but keep it within 280 characters. this is just a daily update to the community what i am doing "
