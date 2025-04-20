@@ -126,6 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Add event listener to the new "Add GitHub Repo" button inside this topic
         newTopic.querySelector(".add-github-btn").addEventListener("click", (e) => {
             e.preventDefault();
+
             const githubContainer = newTopic.querySelector(".githubContainer");
             const newRepo = document.createElement("div");
             newRepo.classList.add("github-repo", "p-4", "border", "border-gray-300", "rounded", "mb-4");
