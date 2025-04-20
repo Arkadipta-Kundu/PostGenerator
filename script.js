@@ -84,17 +84,12 @@ document.addEventListener("DOMContentLoaded", () => {
             <button class="add-resource-btn bg-blue-500 text-white px-4 py-2 mt-2 rounded hover:bg-blue-600">Add Resource</button>
 
             <h6 class="font-semibold text-lg mt-4">💻 Code I Wrote</h6>
-            <input type="text" class="github w-full p-2 border border-gray-300 rounded" placeholder="GitHub repo - Link">
+            <div class="githubContainer"></div>
+            <button class="add-github-btn bg-blue-500 text-white px-4 py-2 mt-2 rounded hover:bg-blue-600">Add GitHub Repo</button>
 
-            <h6 class="font-semibold text-lg mt-4">📝 My Article (if any)</h6>
-            <div class="articleContainer">
-                <div class="flex gap-4 my-2">
-                    <label><input type="radio" class="article-type" name="article-type-new" value="Hashnode"> Hashnode</label>
-                    <label><input type="radio" class="article-type" name="article-type-new" value="Dev.to"> Dev.to</label>
-                    <label><input type="radio" class="article-type" name="article-type-new" value="LinkedIn"> LinkedIn</label>
-                </div>
-                <input type="text" class="article-link w-full p-2 border border-gray-300 rounded" placeholder="Article Link">
-            </div>
+            <h6 class="font-semibold text-lg mt-4">📝 My Articles (if any)</h6>
+            <div class="articlesContainer"></div>
+            <button class="add-article-btn bg-blue-500 text-white px-4 py-2 mt-2 rounded hover:bg-blue-600">Add Article</button>
 
             <button class="remove-topic bg-red-500 text-white px-4 py-2 mt-4 rounded hover:bg-red-600">Remove Topic</button>
         `;
@@ -128,6 +123,60 @@ document.addEventListener("DOMContentLoaded", () => {
             saveFormData();
         });
 
+        // Add event listener to the new "Add GitHub Repo" button inside this topic
+        newTopic.querySelector(".add-github-btn").addEventListener("click", (e) => {
+            e.preventDefault();
+            const githubContainer = newTopic.querySelector(".githubContainer");
+            const newRepo = document.createElement("div");
+            newRepo.classList.add("github-repo", "p-4", "border", "border-gray-300", "rounded", "mb-4");
+            newRepo.innerHTML = `
+                <input type="text" class="github-link w-full p-2 border border-gray-300 rounded mb-2" 
+                    placeholder="GitHub repo - Link">
+                <textarea class="github-description w-full p-2 border border-gray-300 rounded" 
+                    placeholder="Optional: Add details about the code"></textarea>
+                <button class="remove-github-btn text-red-500 mt-2">❌ Remove Repo</button>
+            `;
+
+            githubContainer.appendChild(newRepo);
+
+            // Add functionality to remove the GitHub repository
+            newRepo.querySelector(".remove-github-btn").addEventListener("click", (ev) => {
+                ev.preventDefault();
+                newRepo.remove();
+                saveFormData();
+            });
+
+            saveFormData();
+        });
+
+        // Add event listener to the new "Add Article" button inside this topic
+        newTopic.querySelector(".add-article-btn").addEventListener("click", (e) => {
+            e.preventDefault();
+            const articlesContainer = newTopic.querySelector(".articlesContainer");
+            const newArticle = document.createElement("div");
+            newArticle.classList.add("article", "p-4", "border", "border-gray-300", "rounded", "mb-4");
+            newArticle.innerHTML = `
+                <div class="flex gap-4 my-2">
+                    <label><input type="radio" class="article-type" name="article-type-${Date.now()}" value="Hashnode"> Hashnode</label>
+                    <label><input type="radio" class="article-type" name="article-type-${Date.now()}" value="Dev.to"> Dev.to</label>
+                    <label><input type="radio" class="article-type" name="article-type-${Date.now()}" value="LinkedIn"> LinkedIn</label>
+                </div>
+                <input type="text" class="article-link w-full p-2 border border-gray-300 rounded" placeholder="Article Link">
+                <button class="remove-article-btn text-red-500 mt-2">❌ Remove Article</button>
+            `;
+
+            articlesContainer.appendChild(newArticle);
+
+            // Add functionality to remove the article
+            newArticle.querySelector(".remove-article-btn").addEventListener("click", (ev) => {
+                ev.preventDefault();
+                newArticle.remove();
+                saveFormData();
+            });
+
+            saveFormData();
+        });
+
         // Remove topic functionality
         newTopic.querySelector(".remove-topic").addEventListener("click", (e) => {
             e.preventDefault();
@@ -138,29 +187,57 @@ document.addEventListener("DOMContentLoaded", () => {
         saveFormData();
     });
 
-    // Function to add a new article input
-    document.querySelector(".add-article-btn").addEventListener("click", (event) => {
+    // Delegate event listener for "Add Article" button
+    document.getElementById("postForm").addEventListener("click", (event) => {
+        if (event.target.classList.contains("add-article-btn")) {
+            event.preventDefault();
+
+            // Find the closest articlesContainer for the clicked button
+            const articlesContainer = event.target.closest(".topic").querySelector(".articlesContainer");
+
+            const newArticle = document.createElement("div");
+            newArticle.classList.add("article", "p-4", "border", "border-gray-300", "rounded", "mb-4");
+            newArticle.innerHTML = `
+                <div class="flex gap-4 my-2">
+                    <label><input type="radio" class="article-type" name="article-type-${Date.now()}" value="Hashnode"> Hashnode</label>
+                    <label><input type="radio" class="article-type" name="article-type-${Date.now()}" value="Dev.to"> Dev.to</label>
+                    <label><input type="radio" class="article-type" name="article-type-${Date.now()}" value="LinkedIn"> LinkedIn</label>
+                </div>
+                <input type="text" class="article-link w-full p-2 border border-gray-300 rounded" placeholder="Article Link">
+                <button class="remove-article-btn text-red-500 mt-2">❌ Remove Article</button>
+            `;
+
+            articlesContainer.appendChild(newArticle);
+
+            // Add functionality to remove the article
+            newArticle.querySelector(".remove-article-btn").addEventListener("click", (e) => {
+                e.preventDefault();
+                newArticle.remove();
+            });
+        }
+    });
+
+    // Function to add a new GitHub repository input
+    document.querySelector(".add-github-btn").addEventListener("click", (event) => {
         event.preventDefault();
 
-        const articlesContainer = document.querySelector(".articlesContainer");
-        const newArticle = document.createElement("div");
-        newArticle.classList.add("article", "p-4", "border", "border-gray-300", "rounded", "mb-4");
-        newArticle.innerHTML = `
-            <div class="flex gap-4 my-2">
-                <label><input type="radio" class="article-type" name="article-type-${Date.now()}" value="Hashnode"> Hashnode</label>
-                <label><input type="radio" class="article-type" name="article-type-${Date.now()}" value="Dev.to"> Dev.to</label>
-                <label><input type="radio" class="article-type" name="article-type-${Date.now()}" value="LinkedIn"> LinkedIn</label>
-            </div>
-            <input type="text" class="article-link w-full p-2 border border-gray-300 rounded" placeholder="Article Link">
-            <button class="remove-article-btn text-red-500 mt-2">❌ Remove Article</button>
+        const githubContainer = document.querySelector(".githubContainer");
+        const newRepo = document.createElement("div");
+        newRepo.classList.add("github-repo", "p-4", "border", "border-gray-300", "rounded", "mb-4");
+        newRepo.innerHTML = `
+            <input type="text" class="github-link w-full p-2 border border-gray-300 rounded mb-2" 
+                placeholder="GitHub repo - Link">
+            <textarea class="github-description w-full p-2 border border-gray-300 rounded" 
+                placeholder="Optional: Add details about the code"></textarea>
+            <button class="remove-github-btn text-red-500 mt-2">❌ Remove Repo</button>
         `;
 
-        articlesContainer.appendChild(newArticle);
+        githubContainer.appendChild(newRepo);
 
-        // Add functionality to remove the article
-        newArticle.querySelector(".remove-article-btn").addEventListener("click", (e) => {
+        // Add functionality to remove the GitHub repository
+        newRepo.querySelector(".remove-github-btn").addEventListener("click", (e) => {
             e.preventDefault();
-            newArticle.remove();
+            newRepo.remove();
         });
     });
 
@@ -180,23 +257,21 @@ document.addEventListener("DOMContentLoaded", () => {
         document.querySelectorAll(".topic").forEach((topic) => {
             const learned = topic.querySelector(".learned").value;
             const learnedDate = topic.querySelector(".learned-date").value;
-            const githubLink = topic.querySelector(".github").value || "None";
 
-            // Collecting articles
-            let articles = [];
-            topic.querySelectorAll(".articlesContainer .article").forEach((article) => {
-                const articleType = article.querySelector(".article-type:checked")?.value || "";
-                const articleLink = article.querySelector(".article-link").value;
-                if (articleType && articleLink.trim() !== "") {
-                    articles.push(`${articleType}: ${articleLink}`);
+            // Collecting GitHub repositories
+            let githubRepos = [];
+            topic.querySelectorAll(".githubContainer .github-repo").forEach((repo) => {
+                const repoLink = repo.querySelector(".github-link").value.trim();
+                const repoDescription = repo.querySelector(".github-description").value.trim();
+                if (repoLink) {
+                    githubRepos.push(`${repoLink}${repoDescription ? ` - ${repoDescription}` : ""}`);
                 }
             });
 
             postContent += `<p>In the ${learnedDate}, I was learning about ${learned}. `;
-            postContent += `All the codes related to this topic that I wrote are here: ${githubLink}. `;
 
-            if (articles.length) {
-                postContent += `I also wrote detailed articles about this on: ${articles.join(", ")}. `;
+            if (githubRepos.length) {
+                postContent += `Here are the GitHub repositories I worked on: ${githubRepos.join(", ")}. `;
             }
 
             postContent += `</p>`;
