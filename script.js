@@ -138,6 +138,32 @@ document.addEventListener("DOMContentLoaded", () => {
         saveFormData();
     });
 
+    // Function to add a new article input
+    document.querySelector(".add-article-btn").addEventListener("click", (event) => {
+        event.preventDefault();
+
+        const articlesContainer = document.querySelector(".articlesContainer");
+        const newArticle = document.createElement("div");
+        newArticle.classList.add("article", "p-4", "border", "border-gray-300", "rounded", "mb-4");
+        newArticle.innerHTML = `
+            <div class="flex gap-4 my-2">
+                <label><input type="radio" class="article-type" name="article-type-${Date.now()}" value="Hashnode"> Hashnode</label>
+                <label><input type="radio" class="article-type" name="article-type-${Date.now()}" value="Dev.to"> Dev.to</label>
+                <label><input type="radio" class="article-type" name="article-type-${Date.now()}" value="LinkedIn"> LinkedIn</label>
+            </div>
+            <input type="text" class="article-link w-full p-2 border border-gray-300 rounded" placeholder="Article Link">
+            <button class="remove-article-btn text-red-500 mt-2">❌ Remove Article</button>
+        `;
+
+        articlesContainer.appendChild(newArticle);
+
+        // Add functionality to remove the article
+        newArticle.querySelector(".remove-article-btn").addEventListener("click", (e) => {
+            e.preventDefault();
+            newArticle.remove();
+        });
+    });
+
     // Function to save generated post to localStorage
     const savePostToHistory = (postContent) => {
         let postHistory = JSON.parse(localStorage.getItem("postHistory")) || [];
@@ -155,48 +181,31 @@ document.addEventListener("DOMContentLoaded", () => {
             const learned = topic.querySelector(".learned").value;
             const learnedDate = topic.querySelector(".learned-date").value;
             const githubLink = topic.querySelector(".github").value || "None";
-            const articleLink = topic.querySelector(".article-link").value;
-            const articleType = topic.querySelector(".article-type:checked")?.value || "";
 
-            // Collecting resources
-            let resources = [];
-            topic.querySelectorAll(".resourceContainer .resource-type").forEach((resType, i) => {
-                const resLink = topic.querySelectorAll(".resource-link")[i].value;
-                if (resLink.trim() !== "") {
-                    resources.push(`${resType.value}: ${resLink}`);
+            // Collecting articles
+            let articles = [];
+            topic.querySelectorAll(".articlesContainer .article").forEach((article) => {
+                const articleType = article.querySelector(".article-type:checked")?.value || "";
+                const articleLink = article.querySelector(".article-link").value;
+                if (articleType && articleLink.trim() !== "") {
+                    articles.push(`${articleType}: ${articleLink}`);
                 }
             });
 
-            postContent += `<p>In the ${learnedDate}, I was lerning about ${learned}. `;
-            postContent += `The resources I used for this topic is : ${resources.length ? resources.join(", ") : "None"}. `;
-            postContent += `All the codes related to this topic that i wrote is here : ${githubLink}. `;
+            postContent += `<p>In the ${learnedDate}, I was learning about ${learned}. `;
+            postContent += `All the codes related to this topic that I wrote are here: ${githubLink}. `;
 
-            if (articleType && articleLink) {
-                postContent += `I also wrote detailed article about this on ${articleType}: ${articleLink}. </p>`;
-            } else {
-                postContent += `</p>`;
+            if (articles.length) {
+                postContent += `I also wrote detailed articles about this on: ${articles.join(", ")}. `;
             }
+
+            postContent += `</p>`;
         });
 
         // Next Learning Goal
         const nextTopic = document.getElementById("nextTopic").value.trim();
         if (nextTopic) {
             postContent += `<p>Next, I am going to learn ${nextTopic}. </p>`;
-        }
-
-        // Post Type
-        const postType = document.querySelector('input[name="post-type"]:checked')?.value;
-        if (postType) {
-            const postEndings = {
-                "LinkedIn": "Please turn this into an engaging LinkedIn post that highlights my learning journey in a structured, readable format. It should be:Concise yet informative , Professional but friendly,Optimized for engagement(use emojis, short paragraphs) Make sure the post flows naturally, engaging the audience while showcasing my progress and most importently is Don't sound like AI sound like human.And lastly, as linkedin posts has a charecter limit of 3000 characters so keep that in mind, try to take most of the charecters but stay in limit.",
-                "Hashnode": "Write a Hashnode article.(should be from a student's/learner's pov not a master) and follow my general writing style to match with other articles",
-                "Dev.to": "Write a Dev.to article.(should be from a student's/learner's pov not a master) and follow my general writing style to match with other articles",
-                "Twitter": "Write a Twitter post, but keep it within 280 characters. this is just a daily update to the community what i am doing "
-            };
-
-            if (postEndings[postType]) {
-                postContent += `<p>${postEndings[postType]}</p>`;
-            }
         }
 
         outputDiv.innerHTML = postContent.trim();
