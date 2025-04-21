@@ -4,7 +4,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Post Generator</title>
+    <meta name="description"
+        content="Postiology - Generate perfect prompts for ChatGPT to create posts for LinkedIn, Twitter, Hashnode, Dev.to, and more. Share your learning journey with ease using our 3 years of prompt engineering expertise.">
+    <meta name="keywords"
+        content="Postiology, ChatGPT prompts, post generator, LinkedIn posts, Twitter updates, Hashnode articles, Dev.to blogs, learning journey, prompt engineering, content creation">
+    <meta name="author" content="Arkadipta Kundu">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Postiology - Generate Perfect Prompts for ChatGPT">
+    <meta property="og:description"
+        content="Effortlessly create prompts for ChatGPT to generate posts for LinkedIn, Twitter, Hashnode, and Dev.to. Leverage our 3 years of prompt engineering expertise to share your learning journey.">
+    <meta property="og:image" content="https://yourwebsite.com/assets/postiology-preview.png">
+    <meta property="og:url" content="https://yourwebsite.com">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Postiology - Generate Perfect Prompts for ChatGPT">
+    <meta name="twitter:description"
+        content="Effortlessly create prompts for ChatGPT to generate posts for LinkedIn, Twitter, Hashnode, and Dev.to. Leverage our 3 years of prompt engineering expertise to share your learning journey.">
+    <meta name="twitter:image" content="https://yourwebsite.com/assets/postiology-preview.png">
+    <title>Postiology - Generate Perfect Prompts for ChatGPT</title>
+    <link rel="canonical" href="https://yourwebsite.com">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -12,7 +30,8 @@
 <body
     class="bg-gradient-to-r from-blue-50 via-purple-50 to-pink-50 text-gray-900 min-h-screen flex items-center justify-center">
     <div class="max-w-4xl mx-auto p-8 bg-white shadow-2xl rounded-lg">
-        <h3 class="text-3xl font-extrabold text-center text-purple-600 mb-8">🚀 Post Generator</h3>
+        <h1 class="text-3xl font-extrabold text-center text-purple-600 mb-8">🚀 Postiology - Generate Perfect Prompts
+        </h1>
 
         <!-- Dark Mode Toggle Button -->
         <div class="text-right mb-6">
@@ -25,24 +44,24 @@
         <form id="postForm" class="space-y-6">
             <div class="topic-section">
                 <div class="topic p-6 border border-gray-200 rounded-lg bg-gray-50 shadow-sm">
-                    <h6 class="font-semibold text-lg mb-4 text-purple-600">📌 What I Learned</h6>
+                    <h2 class="font-semibold text-lg mb-4 text-purple-600">📌 What I Learned</h2>
                     <input type="text"
                         class="learned w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500"
                         placeholder="Topic Name" required>
 
-                    <h6 class="font-semibold text-lg mt-6 text-purple-600">📅 When did you learn this?</h6>
+                    <h2 class="font-semibold text-lg mt-6 text-purple-600">📅 When did you learn this?</h2>
                     <input type="text"
                         class="learned-date w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500"
                         placeholder="e.g., Last week, past month, etc." required>
 
-                    <h6 class="font-semibold text-lg mt-6 text-purple-600">📚 Resources</h6>
+                    <h2 class="font-semibold text-lg mt-6 text-purple-600">📚 Resources</h2>
                     <div class="resourceContainer space-y-2"></div>
                     <button type="button"
                         class="add-resource-btn flex items-center gap-2 bg-blue-500 text-white px-4 py-2 mt-4 rounded-full shadow hover:bg-blue-600 transition">
                         <span>➕</span> Add Resource
                     </button>
 
-                    <h6 class="font-semibold text-lg mt-6 text-purple-600">💻 Code I Wrote</h6>
+                    <h2 class="font-semibold text-lg mt-6 text-purple-600">💻 Code I Wrote</h2>
                     <div class="githubContainer space-y-2">
                         <!-- GitHub repositories will be dynamically added here -->
                     </div>
@@ -51,7 +70,7 @@
                         <span>➕</span> Add GitHub Repo
                     </button>
 
-                    <h6 class="font-semibold text-lg mt-6 text-purple-600">📝 My Articles (if any)</h6>
+                    <h2 class="font-semibold text-lg mt-6 text-purple-600">📝 My Articles (if any)</h2>
                     <div class="articlesContainer space-y-2">
                         <!-- Articles will be dynamically added here -->
                     </div>
@@ -67,12 +86,12 @@
                 Add Another Topic
             </button>
 
-            <h6 class="font-semibold text-lg mt-8 text-purple-600">🚀 What’s Next?</h6>
+            <h2 class="font-semibold text-lg mt-8 text-purple-600">🚀 What’s Next?</h2>
             <input type="text" id="nextTopic"
                 class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500"
                 placeholder="What will you learn next?">
 
-            <h6 class="font-semibold text-lg mt-8 text-purple-600">📝 Select Post Type</h6>
+            <h2 class="font-semibold text-lg mt-8 text-purple-600">📝 Select Post Type</h2>
             <div class="flex gap-4 my-4">
                 <label class="flex items-center gap-2">
                     <input type="radio" name="post-type" value="LinkedIn" checked>
@@ -94,11 +113,11 @@
 
             <button type="submit"
                 class="generate-btn bg-purple-500 text-white px-4 py-2 rounded-full shadow hover:bg-purple-600 transition w-full">
-                Generate Post
+                Generate Prompt
             </button>
         </form>
 
-        <h4 class="text-xl font-bold text-center mt-8 text-purple-600">📜 Your Post:</h4>
+        <h2 class="text-xl font-bold text-center mt-8 text-purple-600">📜 Your Prompt:</h2>
         <div id="output" class="p-6 bg-gray-100 border border-gray-300 rounded-lg mt-4 min-h-[100px] shadow-sm"
             contenteditable="false"></div>
 
@@ -115,7 +134,7 @@
         <div class="text-center mt-8">
             <a href="history.html"
                 class="bg-blue-500 text-white px-4 py-2 rounded-full shadow hover:bg-blue-600 transition">
-                View Post History
+                View Prompt History
             </a>
         </div>
     </div>
