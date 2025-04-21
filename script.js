@@ -226,9 +226,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Add the selected post type with a specific message
         switch (selectedPostType) {
             case "LinkedIn":
-                postContent += `<p>Write a LinkedIn post with this details it should be form a learner's pov . Follow my writing style for linkedin posts.
-                start with a compelling hook to grab attention and provide context in 1–2 lines, explaining what you’re learning or working on. Break down key concepts or takeaways with bullet points or emojis for clarity, followed by personal insights or challenges you faced, and how you overcame them. Always encourage engagement by asking for feedback or sharing experiences. Do not include direct links in the post; instead, mention article or repo titles and highlight that all resources, including links, are available in the pinned comment below—mention this reminder multiple times throughout your post. Conclude with relevant hashtags to increase reach. The pinned comment should contain the detailed links to articles and repositories, organized by title for easy reference.
-                Make it as detailed as possible while keeping it in 3000 charecter limit .</p>`;
+                postContent += `<p>Write a LinkedIn post with this details it should be form a learner's pov . Follow my writing style for linkedin posts.Make it as detailed as possible while keeping it in 3000 charecter limit .</p>`;
                 break;
             case "Hashnode":
                 postContent += `<p>Write a Hashnode article about this experience.should be from a learner's pov and try to match my writing style like other articles.</p>`;
@@ -270,4 +268,3 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.classList.toggle("dark-mode");
     });
 });
-
