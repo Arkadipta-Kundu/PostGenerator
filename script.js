@@ -178,6 +178,16 @@ document.addEventListener("DOMContentLoaded", () => {
         localStorage.setItem("postHistory", JSON.stringify(postHistory));
     };
 
+    // Function to handle post type selection
+    const postTypeRadios = document.querySelectorAll('input[name="post-type"]');
+    let selectedPostType = "LinkedIn"; // Default post type
+
+    postTypeRadios.forEach((radio) => {
+        radio.addEventListener("change", (event) => {
+            selectedPostType = event.target.value;
+        });
+    });
+
     // Generate Post
     generateBtn.addEventListener("click", (event) => {
         event.preventDefault();
@@ -211,6 +221,26 @@ document.addEventListener("DOMContentLoaded", () => {
         const nextTopic = document.getElementById("nextTopic").value.trim();
         if (nextTopic) {
             postContent += `<p>Next, I am going to learn ${nextTopic}. </p>`;
+        }
+
+        // Add the selected post type with a specific message
+        switch (selectedPostType) {
+            case "LinkedIn":
+                postContent += `<p>Write a LinkedIn post with this details it should be form a learner's pov . Follow my writing style for linkedin posts.
+                start with a compelling hook to grab attention and provide context in 1–2 lines, explaining what you’re learning or working on. Break down key concepts or takeaways with bullet points or emojis for clarity, followed by personal insights or challenges you faced, and how you overcame them. Always encourage engagement by asking for feedback or sharing experiences. Do not include direct links in the post; instead, mention article or repo titles and highlight that all resources, including links, are available in the pinned comment below—mention this reminder multiple times throughout your post. Conclude with relevant hashtags to increase reach. The pinned comment should contain the detailed links to articles and repositories, organized by title for easy reference.
+                Make it as detailed as possible while keeping it in 3000 charecter limit .</p>`;
+                break;
+            case "Hashnode":
+                postContent += `<p>Write a Hashnode article about this experience.should be from a learner's pov and try to match my writing style like other articles.</p>`;
+                break;
+            case "Dev.to":
+                postContent += `<p>Write a Dev.to article about this experience. should be from a learner's pov .</p>`;
+                break;
+            case "Twitter":
+                postContent += `<p>Write a Twitter post, but keep it within 280 characters. this is just a daily update to the community what i am doing .</p>`;
+                break;
+            default:
+                postContent += `<p>Share your experience on your preferred platform.</p>`;
         }
 
         outputDiv.innerHTML = postContent.trim();
