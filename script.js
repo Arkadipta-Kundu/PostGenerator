@@ -228,6 +228,9 @@ document.addEventListener("DOMContentLoaded", () => {
             case "LinkedIn":
                 postContent += `<p>Write a LinkedIn post with this details it should be form a learner's pov . Follow my writing style for linkedin posts.Make it as detailed as possible while keeping it in 3000 charecter limit .</p>`;
                 break;
+            case "LinkedInArticle":
+                postContent += `<p>Write a detailed LinkedIn article with this details it should be form a learner's pov . Follow my writing style for linkedin artcles.</p>`;
+                break;
             case "Hashnode":
                 postContent += `<p>Write a Hashnode article about this experience.should be from a learner's pov and try to match my writing style like other articles.</p>`;
                 break;
