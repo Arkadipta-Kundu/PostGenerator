@@ -38,34 +38,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // Save form data on input change
     postForm.addEventListener("input", saveFormData);
 
-    // Function to add a new resource input
-    addResourceBtn.addEventListener("click", (event) => {
-        event.preventDefault();
-
-        const newResource = document.createElement("div");
-        newResource.classList.add("flex", "gap-2", "mt-2");
-        newResource.innerHTML = `
-            <select class="resource-type p-2 border border-gray-300 rounded">
-                <option value="YouTube">YouTube</option>
-                <option value="Article">Article</option>
-                <option value="Official Documentation">Official Documentation</option>
-                <option value="Udemy Course">Udemy Course</option>
-            </select>
-            <input type="text" class="resource-link p-2 border border-gray-300 rounded w-full" placeholder="Resource Link">
-            <button class="remove-resource text-red-500">❌</button>
-        `;
-        resourceContainer.appendChild(newResource);
-
-        // Remove resource button functionality
-        newResource.querySelector(".remove-resource").addEventListener("click", (e) => {
-            e.preventDefault();
-            newResource.remove();
-            saveFormData();
-        });
-
-        saveFormData();
-    });
-
     // Function to add a new topic section
     addTopicBtn.addEventListener("click", (event) => {
         event.preventDefault();
@@ -147,28 +119,61 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Function to add a new GitHub repository input
-    document.querySelector(".add-github-btn").addEventListener("click", (event) => {
-        event.preventDefault();
+    // Delegate event listener for "Add Resource" button
+    postForm.addEventListener("click", (event) => {
+        if (event.target.classList.contains("add-resource-btn")) {
+            event.preventDefault();
 
-        const githubContainer = document.querySelector(".githubContainer");
-        const newRepo = document.createElement("div");
-        newRepo.classList.add("github-repo", "p-4", "border", "border-gray-300", "rounded", "mb-4");
-        newRepo.innerHTML = `
-            <input type="text" class="github-link w-full p-2 border border-gray-300 rounded mb-2" 
-                placeholder="GitHub repo - Link">
-            <textarea class="github-description w-full p-2 border border-gray-300 rounded" 
-                placeholder="Optional: Add details about the code"></textarea>
-            <button class="remove-github-btn text-red-500 mt-2">❌ Remove Repo</button>
-        `;
+            // Find the closest resourceContainer for the clicked button
+            const resourceContainer = event.target.closest(".topic").querySelector(".resourceContainer");
 
-        githubContainer.appendChild(newRepo);
+            const newResource = document.createElement("div");
+            newResource.classList.add("flex", "gap-2", "mt-2");
+            newResource.innerHTML = `
+                <select class="resource-type p-2 border border-gray-300 rounded">
+                    <option value="YouTube">YouTube</option>
+                    <option value="Article">Article</option>
+                    <option value="Official Documentation">Official Documentation</option>
+                    <option value="Udemy Course">Udemy Course</option>
+                </select>
+                <input type="text" class="resource-link p-2 border border-gray-300 rounded w-full" placeholder="Resource Link">
+                <button class="remove-resource text-red-500">❌</button>
+            `;
+            resourceContainer.appendChild(newResource);
 
-        // Add functionality to remove the GitHub repository
-        newRepo.querySelector(".remove-github-btn").addEventListener("click", (e) => {
-            e.preventDefault();
-            newRepo.remove();
-        });
+            // Add functionality to remove the resource
+            newResource.querySelector(".remove-resource").addEventListener("click", (e) => {
+                e.preventDefault();
+                newResource.remove();
+            });
+        }
+    });
+
+    // Delegate event listener for "Add GitHub Repo" button
+    postForm.addEventListener("click", (event) => {
+        if (event.target.classList.contains("add-github-btn")) {
+            event.preventDefault();
+
+            // Find the closest githubContainer for the clicked button
+            const githubContainer = event.target.closest(".topic").querySelector(".githubContainer");
+
+            const newRepo = document.createElement("div");
+            newRepo.classList.add("github-repo", "p-4", "border", "border-gray-300", "rounded", "mb-4");
+            newRepo.innerHTML = `
+                <input type="text" class="github-link w-full p-2 border border-gray-300 rounded mb-2" 
+                    placeholder="GitHub repo - Link">
+                <textarea class="github-description w-full p-2 border border-gray-300 rounded" 
+                    placeholder="Optional: Add details about the code"></textarea>
+                <button class="remove-github-btn text-red-500 mt-2">❌ Remove Repo</button>
+            `;
+            githubContainer.appendChild(newRepo);
+
+            // Add functionality to remove the GitHub repository
+            newRepo.querySelector(".remove-github-btn").addEventListener("click", (e) => {
+                e.preventDefault();
+                newRepo.remove();
+            });
+        }
     });
 
     // Function to save generated post to localStorage
