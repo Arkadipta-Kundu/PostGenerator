@@ -179,7 +179,8 @@ document.addEventListener("DOMContentLoaded", () => {
     // Function to save generated post to localStorage
     const savePostToHistory = (postContent) => {
         let postHistory = JSON.parse(localStorage.getItem("postHistory")) || [];
-        postHistory.push(postContent);
+        const timestamp = new Date().toLocaleString(); // Get the current date and time
+        postHistory.push({ content: postContent, time: timestamp }); // Save content and timestamp
         localStorage.setItem("postHistory", JSON.stringify(postHistory));
     };
 

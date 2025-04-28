@@ -31,10 +31,15 @@
             if (postHistory.length === 0) {
                 historyContainer.innerHTML = "<p class='text-center'>No posts generated yet.</p>";
             } else {
-                postHistory.forEach((post, index) => {
+                // Reverse the post history to show the latest posts first
+                postHistory.reverse().forEach((post, index) => {
                     const postDiv = document.createElement("div");
                     postDiv.classList.add("p-4", "bg-gray-200", "border", "border-gray-300", "rounded");
-                    postDiv.innerHTML = `<h4 class="font-bold">Post ${index + 1}</h4>${post}`;
+                    postDiv.innerHTML = `
+                    <h4 class="font-bold">Post ${postHistory.length - index}</h4>
+                    <p><strong>Generated At:</strong> ${post.time}</p>
+                    <div>${post.content}</div>
+                `;
                     historyContainer.appendChild(postDiv);
                 });
             }
