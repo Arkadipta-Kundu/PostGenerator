@@ -198,6 +198,16 @@ document.addEventListener("DOMContentLoaded", () => {
             const learned = topic.querySelector(".learned").value;
             const learnedDate = topic.querySelector(".learned-date").value;
 
+            // Collecting resources
+            let resources = [];
+            topic.querySelectorAll(".resourceContainer .flex").forEach((resource) => {
+                const resourceType = resource.querySelector(".resource-type").value;
+                const resourceLink = resource.querySelector(".resource-link").value.trim();
+                if (resourceLink) {
+                    resources.push(`${resourceType}: ${resourceLink}`);
+                }
+            });
+
             // Collecting GitHub repositories
             let githubRepos = [];
             topic.querySelectorAll(".githubContainer .github-repo").forEach((repo) => {
@@ -208,10 +218,28 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
 
+            // Collecting articles
+            let articles = [];
+            topic.querySelectorAll(".articlesContainer .article").forEach((article) => {
+                const articleType = article.querySelector(".article-type:checked")?.value || "Unknown";
+                const articleLink = article.querySelector(".article-link").value.trim();
+                if (articleLink) {
+                    articles.push(`${articleType}: ${articleLink}`);
+                }
+            });
+
             postContent += `<p>In the ${learnedDate}, I was learning about ${learned}. `;
+
+            if (resources.length) {
+                postContent += `Here are the resources I used: ${resources.join(", ")}. `;
+            }
 
             if (githubRepos.length) {
                 postContent += `Here are the GitHub repositories I worked on: ${githubRepos.join(", ")}. `;
+            }
+
+            if (articles.length) {
+                postContent += `Here are the articles I wrote: ${articles.join(", ")}. `;
             }
 
             postContent += `</p>`;
